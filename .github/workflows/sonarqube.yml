@@ -42,8 +42,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   
-          # secrets에 등록하기 귀찮다면 아래처럼 직접 주소를 적어두셔도 무방합니다.
           SONAR_HOST_URL: https://sonarcloud.io
+          JAVA_HOME: ${{ env.JAVA_HOME_17_X64 }}
         with:
           args: >
             -Dsonar.projectKey=whwocom_test
