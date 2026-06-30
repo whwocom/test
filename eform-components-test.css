@@ -1,0 +1,2119 @@
+/* ============================================================================
+   EFORM Design System — v3.0 Components
+   순수 CSS (Tailwind 없음) / 맑은 고딕
+   의존: eform-tokens.css 먼저 link 필수
+   모든 클래스·변수에 `eform-` prefix 적용
+   ============================================================================ */
+
+/* ============================================================================
+   Button_basic — 채움 버튼 (Primary / Secondary / Tertiary)
+   Size: Large 40px / Medium 32px(★) / Small 28px
+   States: Default / Hover / Pressed / Disabled
+   ============================================================================ */
+
+.eform-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 16px;
+  height: 32px; /* Medium 기본 */
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-small-size); /* 12px */
+  font-weight: var(--eform-font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0;
+  border: 1px solid transparent;
+  border-radius: var(--eform-radius-sm);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+  white-space: nowrap;
+}
+
+.eform-btn:focus-visible {
+  outline: 2px solid var(--eform-color-primary);
+  outline-offset: 1px;
+}
+
+/* Size */
+.eform-btn-large {
+  height: 40px;
+  font-size: var(--eform-body-medium-size);
+} /* 13px */
+.eform-btn-medium {
+  height: 32px;
+  font-size: var(--eform-body-small-size);
+} /* 12px */
+.eform-btn-small {
+  height: 28px;
+  font-size: var(--eform-body-xsmall-size);
+  padding: 0 12px;
+} /* 11px */
+
+/* Icon-only (정사각) — size 클래스의 height를 그대로 한 변으로 사용 */
+.eform-btn-icon-only {
+  padding: 0;
+  aspect-ratio: 1 / 1;
+}
+
+/* Icon size 내부 */
+.eform-btn .eform-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+/* --- Type: Primary --- */
+.eform-btn-primary {
+  background: var(--eform-color-primary);
+  border-color: var(--eform-color-primary);
+  color: var(--eform-text-on-primary);
+}
+.eform-btn-primary:hover:not(:disabled) {
+  background: var(--eform-color-primary-hover);
+  border-color: var(--eform-color-primary-hover);
+}
+.eform-btn-primary:active:not(:disabled) {
+  background: var(--eform-color-primary-pressed);
+  border-color: var(--eform-color-primary-pressed);
+}
+
+/* --- Type: Secondary --- */
+/* 기본(text-only): border primary-70 (#2E548D)
+   아이콘 포함 시 (.eform-icon 자식 또는 .eform-btn-icon-only): border primary-60 (#3D69AB) */
+.eform-btn-secondary {
+  background: var(--eform-color-primary-soft-bg);
+  border-color: var(--eform-color-primary-soft-text); /* #2E548D — text-only */
+  color: var(--eform-color-primary-soft-text);
+}
+.eform-btn-secondary:has(.eform-icon),
+.eform-btn-secondary.eform-btn-icon-only {
+  border-color: var(--eform-color-primary); /* #3D69AB — icon 포함 */
+}
+.eform-btn-secondary:hover:not(:disabled) {
+  background: var(--eform-color-primary-soft-hover);
+}
+.eform-btn-secondary:active:not(:disabled) {
+  background: var(--eform-color-primary-soft-pressed);
+}
+
+/* --- Type: Tertiary (아웃라인) --- */
+.eform-btn-tertiary {
+  background: var(--eform-bg-page);
+  border-color: var(--eform-border-button);
+  color: var(--eform-text-strong);
+}
+.eform-btn-tertiary:hover:not(:disabled) {
+  background: var(--eform-bg-soft);
+}
+.eform-btn-tertiary:active:not(:disabled) {
+  background: var(--eform-bg-hover);
+}
+
+/* --- Disabled (3 타입 공통) --- */
+.eform-btn:disabled,
+.eform-btn.is-disabled {
+  background: var(--eform-bg-disabled);
+  border-color: var(--eform-bg-disabled);
+  color: var(--eform-text-disabled);
+  cursor: not-allowed;
+}
+
+/* --- Fixed Width (글자 수 기반) --- */
+.eform-btn-w-2c {
+  width: 56px;
+  padding: 0;
+}
+.eform-btn-w-3c {
+  width: 68px;
+  padding: 0;
+}
+.eform-btn-w-4c {
+  width: 80px;
+  padding: 0;
+}
+.eform-btn-w-6c {
+  width: 104px;
+  padding: 0;
+}
+.eform-btn-w-2c-i {
+  width: 78px;
+  padding: 0;
+} /* 아이콘 포함 */
+.eform-btn-w-3c-i {
+  width: 90px;
+  padding: 0;
+}
+.eform-btn-w-4c-i {
+  width: 102px;
+  padding: 0;
+}
+.eform-btn-w-6c-i {
+  width: 126px;
+  padding: 0;
+}
+
+/* ============================================================================
+   Button_text — 텍스트 버튼 (배경·보더 없음)
+   Size: Large 13pt / Medium 12pt / Small 11pt(★)
+   Types: Primary / Tertiary (Secondary 없음)
+   ============================================================================ */
+
+.eform-btn-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-xsmall-size); /* 11px (Small 기본) */
+  font-weight: var(--eform-font-weight-regular);
+  line-height: 1;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+
+.eform-btn-text:focus-visible {
+  outline: 2px solid var(--eform-color-primary);
+  outline-offset: 2px;
+}
+
+/* Size */
+.eform-btn-text-large {
+  font-size: var(--eform-body-medium-size);
+} /* 13px */
+.eform-btn-text-medium {
+  font-size: var(--eform-body-small-size);
+} /* 12px */
+.eform-btn-text-small {
+  font-size: var(--eform-body-xsmall-size);
+} /* 11px */
+
+/* Icon */
+.eform-btn-text .eform-icon {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+/* --- Type: Primary --- */
+.eform-btn-text-primary {
+  color: var(--eform-color-primary);
+}
+.eform-btn-text-primary:hover {
+  color: var(--eform-color-primary-hover);
+}
+.eform-btn-text-primary:active {
+  color: var(--eform-color-primary-pressed);
+}
+
+/* --- Type: Tertiary --- */
+.eform-btn-text-tertiary {
+  color: var(--eform-text-default);
+}
+.eform-btn-text-tertiary:hover {
+  color: var(--eform-text-hover);
+}
+.eform-btn-text-tertiary:active {
+  color: var(--eform-text-strong);
+}
+
+/* --- Disabled (Primary/Tertiary 공통) --- */
+.eform-btn-text:disabled,
+.eform-btn-text.is-disabled {
+  color: var(--eform-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   Button 5-color 확장 — Filled / Secondary / Tertiary / Text
+   팔레트 shade 60/70/80 일괄 (Primary 패턴 그대로 적용)
+   ============================================================================ */
+
+/* --- Filled: Success (teal) --- */
+.eform-btn-success {
+  background: var(--eform-teal-60);
+  border-color: var(--eform-teal-60);
+  color: var(--eform-text-on-primary);
+}
+.eform-btn-success:hover:not(:disabled) {
+  background: var(--eform-teal-70);
+  border-color: var(--eform-teal-70);
+}
+.eform-btn-success:active:not(:disabled) {
+  background: var(--eform-teal-80);
+  border-color: var(--eform-teal-80);
+}
+
+/* --- Filled: Warning (mustard) --- */
+.eform-btn-warning {
+  background: var(--eform-mustard-60);
+  border-color: var(--eform-mustard-60);
+  color: var(--eform-text-on-primary);
+}
+.eform-btn-warning:hover:not(:disabled) {
+  background: var(--eform-mustard-70);
+  border-color: var(--eform-mustard-70);
+}
+.eform-btn-warning:active:not(:disabled) {
+  background: var(--eform-mustard-80);
+  border-color: var(--eform-mustard-80);
+}
+
+/* --- Filled: Danger (red) --- */
+.eform-btn-danger {
+  background: var(--eform-red-60);
+  border-color: var(--eform-red-60);
+  color: var(--eform-text-on-primary);
+}
+.eform-btn-danger:hover:not(:disabled) {
+  background: var(--eform-red-70);
+  border-color: var(--eform-red-70);
+}
+.eform-btn-danger:active:not(:disabled) {
+  background: var(--eform-red-80);
+  border-color: var(--eform-red-80);
+}
+
+/* --- Filled: Neutral (solid gray) --- */
+.eform-btn-neutral {
+  background: var(--eform-gray-60);
+  border-color: var(--eform-gray-60);
+  color: var(--eform-text-on-primary);
+}
+.eform-btn-neutral:hover:not(:disabled) {
+  background: var(--eform-gray-70);
+  border-color: var(--eform-gray-70);
+}
+.eform-btn-neutral:active:not(:disabled) {
+  background: var(--eform-gray-80);
+  border-color: var(--eform-gray-80);
+}
+
+/* --- Secondary: Success --- */
+.eform-btn-secondary-success {
+  background: var(--eform-teal-5);
+  border-color: var(--eform-teal-70);
+  color: var(--eform-teal-70);
+}
+.eform-btn-secondary-success:hover:not(:disabled) { background: var(--eform-teal-10); }
+.eform-btn-secondary-success:active:not(:disabled) { background: var(--eform-teal-20); }
+
+/* --- Secondary: Warning --- */
+.eform-btn-secondary-warning {
+  background: var(--eform-mustard-5);
+  border-color: var(--eform-mustard-70);
+  color: var(--eform-mustard-70);
+}
+.eform-btn-secondary-warning:hover:not(:disabled) { background: var(--eform-mustard-10); }
+.eform-btn-secondary-warning:active:not(:disabled) { background: var(--eform-mustard-20); }
+
+/* --- Secondary: Danger --- */
+.eform-btn-secondary-danger {
+  background: var(--eform-red-5);
+  border-color: var(--eform-red-70);
+  color: var(--eform-red-70);
+}
+.eform-btn-secondary-danger:hover:not(:disabled) { background: var(--eform-red-10); }
+.eform-btn-secondary-danger:active:not(:disabled) { background: var(--eform-red-20); }
+
+/* --- Secondary: Neutral --- */
+.eform-btn-secondary-neutral {
+  background: var(--eform-gray-5);
+  border-color: var(--eform-gray-70);
+  color: var(--eform-gray-70);
+}
+.eform-btn-secondary-neutral:hover:not(:disabled) { background: var(--eform-gray-10); }
+.eform-btn-secondary-neutral:active:not(:disabled) { background: var(--eform-gray-15); }
+
+/* --- Tertiary (Outline): Primary (Outline Blue) --- */
+.eform-btn-tertiary-primary {
+  background: var(--eform-gray-0);
+  border-color: var(--eform-primary-70);
+  color: var(--eform-primary-70);
+}
+.eform-btn-tertiary-primary:hover:not(:disabled) { background: var(--eform-primary-5); }
+.eform-btn-tertiary-primary:active:not(:disabled) { background: var(--eform-primary-10); }
+
+/* --- Tertiary: Success --- */
+.eform-btn-tertiary-success {
+  background: var(--eform-gray-0);
+  border-color: var(--eform-teal-70);
+  color: var(--eform-teal-70);
+}
+.eform-btn-tertiary-success:hover:not(:disabled) { background: var(--eform-teal-5); }
+.eform-btn-tertiary-success:active:not(:disabled) { background: var(--eform-teal-10); }
+
+/* --- Tertiary: Warning --- */
+.eform-btn-tertiary-warning {
+  background: var(--eform-gray-0);
+  border-color: var(--eform-mustard-70);
+  color: var(--eform-mustard-70);
+}
+.eform-btn-tertiary-warning:hover:not(:disabled) { background: var(--eform-mustard-5); }
+.eform-btn-tertiary-warning:active:not(:disabled) { background: var(--eform-mustard-10); }
+
+/* --- Tertiary: Danger --- */
+.eform-btn-tertiary-danger {
+  background: var(--eform-gray-0);
+  border-color: var(--eform-red-70);
+  color: var(--eform-red-70);
+}
+.eform-btn-tertiary-danger:hover:not(:disabled) { background: var(--eform-red-5); }
+.eform-btn-tertiary-danger:active:not(:disabled) { background: var(--eform-red-10); }
+
+/* --- Text: Success --- */
+.eform-btn-text-success { color: var(--eform-teal-60); }
+.eform-btn-text-success:hover { color: var(--eform-teal-70); }
+.eform-btn-text-success:active { color: var(--eform-teal-80); }
+
+/* --- Text: Warning --- */
+.eform-btn-text-warning { color: var(--eform-mustard-60); }
+.eform-btn-text-warning:hover { color: var(--eform-mustard-70); }
+.eform-btn-text-warning:active { color: var(--eform-mustard-80); }
+
+/* --- Text: Danger --- */
+.eform-btn-text-danger { color: var(--eform-red-60); }
+.eform-btn-text-danger:hover { color: var(--eform-red-70); }
+.eform-btn-text-danger:active { color: var(--eform-red-80); }
+
+/* ============================================================================
+   Tab — 탭 컴포넌트
+   Size: Large 44px(★) / Medium 40px
+   States: Default / Hover / Pressed / Active / Disabled
+   구조: .eform-tab-bar > .eform-tab (item)
+   ============================================================================ */
+
+.eform-tab-bar {
+  display: inline-flex;
+  align-items: stretch;
+  border-bottom: 1px solid transparent;
+}
+
+.eform-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 132px;
+  height: 44px; /* Large 기본 */
+  padding: 0 16px;
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-large-size); /* 14px (Large) */
+  font-weight: var(--eform-font-weight-regular);
+  line-height: 1;
+  color: var(--eform-text-default);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    color 120ms ease,
+    border-color 120ms ease;
+}
+
+.eform-tab .eform-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+/* Size */
+.eform-tab-large {
+  height: 44px;
+  font-size: var(--eform-body-large-size);
+} /* 14px */
+.eform-tab-medium {
+  height: 40px;
+  font-size: var(--eform-body-medium-size);
+} /* 13px */
+
+/* States */
+.eform-tab:hover:not(:disabled):not(.is-active) {
+  color: var(--eform-text-hover);
+  border-bottom-color: var(--eform-border-default); /* 연한 #E6E6EA */
+}
+
+.eform-tab:active:not(:disabled):not(.is-active),
+.eform-tab.is-pressed {
+  color: var(--eform-color-primary);
+  font-weight: var(--eform-font-weight-bold);
+  border-bottom-color: var(--eform-border-default); /* 아직 연한 상태 */
+}
+
+.eform-tab.is-activated {
+  color: var(--eform-color-primary);
+  font-weight: var(--eform-font-weight-bold);
+  border-bottom-color: var(--eform-color-primary); /* 진한 primary */
+}
+
+.eform-tab:disabled,
+.eform-tab.is-disabled {
+  color: var(--eform-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   Main Menu — 사이드바 메뉴
+   Width: 259px
+   Header: 68px (fixed) + Body: flexible + Footer: 56px (fixed)
+   1depth item: 44px / 2depth item: 36px
+   ============================================================================ */
+
+.eform-sidebar {
+  width: 259px;
+  height: 100vh;
+  height: 100dvh; /* Safari viewport 보정 (브라우저 UI 제외한 실제 높이) */
+  display: flex;
+  flex-direction: column;
+  background: var(--eform-bg-sidebar); /* #F4F6F9 */
+  font-family: var(--eform-font-family-base);
+  overflow: hidden; /* collapse 애니메이션 중 내부 content가 밖으로 비치는 잔상 방지 */
+}
+
+/* --- 사이드바 아이콘 공통 베이스 (font-icon) ---
+   마크업: <i class="eform-icon ...">, <i class="eform-icon eform-chevron ...">, <i class="eform-icon eform-logo-icon ...">
+   목적: bold 상속 방지, <i> italic 방지, flex 정렬, 축소 방지 — 모든 사이드바 폰트 아이콘 공통
+   참고: 크기·색상은 컨텍스트별(.eform-menu-item .eform-icon 등)에서 지정 */
+.eform-icon,
+.eform-chevron,
+.eform-logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--eform-font-weight-regular);
+  font-style: normal;
+  flex-shrink: 0;
+}
+
+/* --- Header (로고) --- */
+.eform-sidebar-header {
+  flex: 0 0 68px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--eform-border-divider); /* #EEEEF3 */
+  transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), gap 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* .eform-logo-mark: 정사각 마크(접힘 상태 전용) / .eform-logo-full: 가로형 풀 로고(펼침 상태 전용)
+   이미지는 background-image로 적용 — HTML에 src 노출 없음, 상대경로는 서빙 URL(/eform/css/) 기준 */
+.eform-sidebar-header .eform-logo-mark {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  display: none; /* 펼침 상태에서는 숨김 */
+  background-image: url('../images/logo-mark.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.eform-sidebar.is-collapsed .eform-sidebar-header .eform-logo-mark {
+  display: block;
+}
+.eform-sidebar-header .eform-logo-full {
+  width: 167px;       /* logo.png 원본 크기 그대로(167x31) — 1:1 매핑으로 선명도 최대 */
+  height: 31px;
+  flex-shrink: 0;
+  background-image: url('../images/logo.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  /* 기본 숨김 — is-expanded 시 max-width + opacity fade-in */
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 0.04s ease-out 0s, max-width 0.10s ease-out 0.10s;
+}
+.eform-sidebar.is-expanded .eform-sidebar-header .eform-logo-full {
+  opacity: 1;
+  max-width: 200px;
+  transition: opacity 0.2s ease-out 0.3s, max-width 0s 0.3s;
+}
+
+/* --- Body (메뉴 리스트) --- */
+.eform-sidebar-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 16px 0 0 0;
+}
+
+/* --- Menu Group (1depth 묶음, gap 8px) --- */
+.eform-menu-group {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.eform-menu-group + .eform-menu-group {
+  margin-top: 6px;
+}
+
+/* --- Menu Item: 1depth --- */
+.eform-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 44px;
+  padding: 0 4px 0 12px; /* 좌 12 (icon 위치) / 우 4 (chevron inset) */
+  width: 100%;
+  border-radius: var(--eform-radius-md);
+  font-size: var(--eform-body-large-size); /* 14px */
+  font-weight: var(--eform-font-weight-bold);
+  color: var(--eform-text-subtitle); /* #737377 */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 100ms ease, padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), gap 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.eform-menu-item .eform-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px; /* <i> 폰트 아이콘 글리프 크기 */
+  color: var(--eform-text-subtitle);
+}
+.eform-menu-item .eform-chevron {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  font-size: 14px; /* chevron은 박스보다 작게 (prototype SVG arrow와 유사) */
+  color: var(--eform-gray-50);
+  /* main.jsp 패턴 — 기본 숨김, is-expanded 시 fade-in with delay */
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 0.04s ease-out 0s, max-width 0.10s ease-out 0.10s, transform 150ms ease;
+}
+.eform-sidebar.is-expanded .eform-menu-item .eform-chevron {
+  opacity: 1;
+  max-width: 20px;
+  transition: opacity 0.2s ease-out 0.3s, max-width 0s 0.3s, transform 150ms ease;
+}
+
+/* 1depth menu-text — 기본 숨김, is-expanded 시 fade-in */
+.eform-menu-item .eform-menu-text {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.04s ease-out 0s, max-width 0.10s ease-out 0.10s;
+}
+.eform-sidebar.is-expanded .eform-menu-item .eform-menu-text {
+  opacity: 1;
+  max-width: 200px;
+  transition: opacity 0.2s ease-out 0.3s, max-width 0s 0.3s;
+}
+/* chevron 회전은 sidebar.is-expanded 시에만 (main.jsp 패턴) */
+.eform-sidebar.is-expanded .eform-menu-group.is-expanded > .eform-menu-item .eform-chevron,
+.eform-sidebar.is-expanded .eform-menu-group:has(.eform-menu-subitem.is-selected) > .eform-menu-item .eform-chevron {
+  transform: rotate(90deg);
+}
+
+/* 아코디언 — subitem 기본 숨김(opacity:0, height:0) */
+/* .eform-sidebar.is-expanded 상태일 때만 펼침 + transition-delay로 사이드바 width 전환 후 나타남 */
+.eform-menu-group .eform-menu-subitem {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    /* collapse 시: opacity와 height 동시 축소로 1depth 레이아웃 shift 방지 */
+    transition: opacity 0.04s ease-out 0s, height 0.10s ease-out 0s;
+}
+.eform-sidebar.is-expanded .eform-menu-group.is-expanded .eform-menu-subitem,
+.eform-sidebar.is-expanded .eform-menu-group:has(.eform-menu-subitem.is-selected) .eform-menu-subitem {
+  display: flex;
+  height: 36px;
+    opacity: 1;
+  /* expand 시: 2depth 아코디언 클릭에 즉시 반응 (사이드바 토글 시에도 overflow:hidden으로 넘친 부분 가려짐) */
+  transition: opacity 0.2s ease-out 0s, height 0.2s ease-out 0s;
+}
+
+/* 1depth states — bg 전체 */
+.eform-menu-item:hover:not(.is-pressed):not(.is-selected) {
+  background: var(--eform-bg-hover); /* #EEEEF3 */
+}
+.eform-menu-item.is-pressed {
+  background: var(--eform-bg-pressed); /* #E6E6EA — hover보다 한 단계 진함 */
+}
+.eform-menu-item.is-selected {
+  background: var(--eform-color-primary-soft-hover); /* #E2EAF7 */
+  color: var(--eform-color-primary-hover); /* #3D69AB */
+}
+.eform-menu-item.is-selected .eform-icon {
+  color: var(--eform-color-primary-hover);
+}
+
+/* collapsed 상태: 선택된 2depth가 있는 group의 1depth 아이콘을 selected처럼 표시
+   — 기본은 즉시 반응(이미 접힌 상태에서 layer menu로 클릭 시), 토글 중(is-collapsing)만 delay */
+.eform-sidebar.is-collapsed .eform-menu-group:has(.eform-menu-subitem.is-selected) > .eform-menu-item {
+  background: var(--eform-color-primary-soft-hover);
+  color: var(--eform-color-primary-hover);
+  transition: background 150ms ease, color 150ms ease;
+}
+.eform-sidebar.is-collapsed .eform-menu-group:has(.eform-menu-subitem.is-selected) > .eform-menu-item .eform-icon {
+  color: var(--eform-color-primary-hover);
+  transition: color 150ms ease;
+}
+/* 토글 중: 사이드바 width 축소(0.3s) 완료 후 fade-in되도록 delay 적용 */
+.eform-sidebar.is-collapsing .eform-menu-group:has(.eform-menu-subitem.is-selected) > .eform-menu-item {
+  transition: background 150ms ease 0.3s, color 150ms ease 0.3s;
+}
+.eform-sidebar.is-collapsing .eform-menu-group:has(.eform-menu-subitem.is-selected) > .eform-menu-item .eform-icon {
+  transition: color 150ms ease 0.3s;
+}
+
+/* --- Menu Item: 2depth (자식) --- */
+/* 주의: 2depth의 hover/pressed/selected bg는 좌측 32px이 투명하고 우측만 덮는 패턴.
+       ::before pseudo element로 inset + border-radius 구현 (click 영역은 full width 유지) */
+.eform-menu-subitem {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px 0 44px; /* 좌 44 (text 위치) / 우 12 */
+  font-size: var(--eform-body-medium-size); /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  color: var(--eform-text-subtitle);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;   /* <a> 태그 사용 대비 */
+  transition: opacity 100ms ease-out, height 200ms ease-out;
+}
+.eform-menu-subitem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 32px;              /* 좌측 32px 투명 inset */
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  border-radius: var(--eform-radius-md);      /* 좌측 상·하 corner radius 적용 */
+  z-index: -1;
+  transition: background 100ms ease;
+}
+.eform-menu-subitem:hover:not(.is-pressed):not(.is-selected)::before {
+  background: var(--eform-bg-hover);
+}
+.eform-menu-subitem.is-pressed::before {
+  background: var(--eform-bg-pressed);
+}
+.eform-menu-subitem.is-selected::before {
+  background: var(--eform-color-primary-soft-hover);
+}
+.eform-menu-subitem.is-selected {
+  color: var(--eform-color-primary-hover);
+  font-weight: var(--eform-font-weight-bold); /* selected는 weight 700 (기본 400과 차이) */
+}
+
+/* --- Footer (프로필) --- */
+.eform-sidebar-footer {
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  border-top: 1px solid var(--eform-border-divider-soft); /* #F3F3F7 */
+}
+.eform-sidebar-footer .eform-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--eform-radius-circle);
+  background: var(--eform-color-primary-hover); /* #3D69AB */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--eform-text-on-primary);           /* white */
+  font-size: var(--eform-body-small-size);       /* 12px */
+  font-weight: var(--eform-font-weight-bold);
+}
+.eform-sidebar-footer .eform-profile-name {
+  font-size: var(--eform-body-medium-size); /* 13px */
+  color: var(--eform-text-title); /* #303031 */
+}
+.eform-sidebar-footer .eform-profile-role {
+  font-size: 10px;
+  color: var(--eform-text-default); /* #737377 */
+  margin-top: 2px;
+}
+
+/* --- Collapsed State (아이콘 모드, 60px 너비) --- */
+.eform-sidebar {
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.eform-sidebar.is-collapsed {
+  width: 60px;
+  overflow: hidden; /* opacity:0 텍스트가 60px 밖으로 넘치는 것 클리핑 */
+}
+/* collapsed 시 chevron의 margin-left:auto 무효화 (아이콘 중앙 정렬 위해) */
+/* 주: text/chevron은 위 rule에서 opacity:0 + max-width:0으로 hidden, subitem은 opacity/height 전환 */
+.eform-sidebar.is-collapsed .eform-menu-item .eform-chevron {
+  margin-left: 0;
+}
+.eform-sidebar.is-collapsed .eform-sidebar-header {
+  padding: 0 13px; /* logo-mark 33px을 sidebar 60px 정중앙 부근(60-33=27 → 13/14 분배)에 배치 — justify-content 대신 symmetric padding으로 위치 점프 제거 */
+  gap: 0;
+}
+.eform-sidebar.is-collapsed .eform-menu-group {
+  padding: 0 6px;
+}
+.eform-sidebar.is-collapsed .eform-menu-item {
+  padding: 0 14px; /* menu-icon 20px을 menu-item 48px 정중앙에 배치 — justify-content 대신 symmetric padding */
+  gap: 0;
+}
+.eform-sidebar.is-collapsed .eform-sidebar-footer {
+  padding: 0;
+  justify-content: center;
+}
+.eform-sidebar.is-collapsed .eform-sidebar-footer > div:not(.eform-avatar) {
+  display: none;
+}
+
+/* ============================================================================
+   Sidebar Layer Menu (collapsed 사이드바 hover 팝업) — Variant B: Accent Rail
+   — 사이드바가 축소(is-collapsed)된 상태에서 1depth 아이콘 hover 시 표시되는 popover.
+   — 선택자가 .sidebar-layer-menu로 구체적이므로 다른 페이지 영향 없음.
+   ============================================================================ */
+.sidebar-layer-menu {
+  position: fixed;
+  left: 68px;                                                    /* sidebar 60 + 8px gap */
+  min-width: 200px;
+  background: var(--eform-gray-0);
+  border: 1px solid var(--eform-border-divider);
+  border-left: 3px solid var(--eform-color-primary);             /* Accent rail — 사이드바 selected 맥락 연결 */
+  border-radius: 0 var(--eform-radius-lg) var(--eform-radius-lg) 0; /* 좌측 0 (rail), 우측만 8px */
+  /* layer menu 전용 진한 shadow — shadow-4보다 alpha 상향 (눈에 띄는 elevation) */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18), 0 12px 28px rgba(0, 0, 0, 0.22);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-4px);
+  z-index: 20;                                                   /* dropdown layer — modal(1000)보다 아래 */
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+.sidebar-layer-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.sidebar-layer-menu .layer-menu-title {
+  padding: 6px 12px 10px;
+  font-size: var(--eform-body-large-size);                       /* 14px */
+  font-weight: var(--eform-font-weight-bold);
+  color: var(--eform-color-primary);                             /* 현재 맥락 강조 */
+  border-bottom: 1px solid var(--eform-border-divider-soft);
+  margin-bottom: 6px;
+}
+.sidebar-layer-menu .eform-menu-subitem {
+  display: flex !important;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  font-size: var(--eform-body-medium-size);                      /* 13px */
+  color: var(--eform-text-default);
+  border-radius: var(--eform-radius-sm);
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease;
+}
+.sidebar-layer-menu .eform-menu-subitem::before { display: none; }
+.sidebar-layer-menu .eform-menu-subitem:hover {
+  background: var(--eform-color-primary-soft-hover);
+  color: var(--eform-color-primary-hover);
+}
+.sidebar-layer-menu .eform-menu-subitem.is-selected {
+  background: var(--eform-color-primary-soft-bg);
+  color: var(--eform-color-primary-hover);
+  font-weight: var(--eform-font-weight-bold);
+}
+
+/* 접근성 — 키보드 탐색 시 focus-visible ring */
+.sidebar-layer-menu .eform-menu-subitem:focus-visible {
+  outline: 2px solid var(--eform-color-primary);
+  outline-offset: -2px;
+}
+/* 접근성 — prefers-reduced-motion 대응 (OS 동작 감소 설정) */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-layer-menu {
+    transition: opacity 1ms, transform 1ms;
+  }
+}
+
+/* ============================================================================
+   Top — 페이지 상단바
+   Height: 56px (fixed)
+   좌우 padding: 28px
+   ============================================================================ */
+
+.eform-top-bar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: var(--eform-bg-page);
+  font-family: var(--eform-font-family-base);
+  align-items: flex-end;
+}
+
+.eform-top-bar .eform-logo {
+  font-size: var(--eform-heading-large-size);
+  font-weight: var(--eform-font-weight-bold);
+  color: var(--eform-text-default); /* #737377 */
+}
+
+/* --- Search Input (검색창 in Top) --- */
+.eform-top-search {
+  position: relative;
+  width: 300px;
+  height: 36px;
+}
+.eform-top-search input {
+  width: 100%;
+  height: 100%;
+  padding: 0 12px 0 34px;
+  border: 1px solid var(--eform-border-default); /* #E6E6EA */
+  border-radius: var(--eform-radius-sm);
+  background: var(--eform-bg-page);
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size); /* 13px */
+  color: var(--eform-text-title);
+}
+.eform-top-search input::placeholder {
+  color: var(--eform-text-disabled); /* #AAAAAC */
+}
+.eform-top-search input:focus {
+  outline: 2px solid var(--eform-color-primary);
+  outline-offset: -1px;
+}
+.eform-top-search .eform-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--eform-text-default); /* #737377 */
+  pointer-events: none;
+}
+
+/* ============================================================================
+   Popup Modal Top — 팝업 상단 상태바
+   Height: 32px (fixed)
+   좌 padding 16px / 우 padding 20px
+   ============================================================================ */
+
+.eform-popup-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0 20px 0 16px;
+  background: var(--eform-bg-page);
+  border: 1px solid var(--eform-border-default); /* #E6E6EA */
+  font-family: var(--eform-font-family-base);
+}
+
+.eform-popup-top .eform-count {
+  font-size: var(--eform-body-small-size); /* 12px */
+  color: var(--eform-text-meta); /* #919194 */
+}
+.eform-popup-top .eform-count strong {
+  font-weight: var(--eform-font-weight-bold);
+  color: var(--eform-text-meta);
+}
+
+.eform-popup-top .eform-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--eform-body-small-size); /* 12px */
+  color: var(--eform-color-primary-hover); /* #3D69AB */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.eform-popup-top .eform-reset-btn .eform-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--eform-color-primary-hover);
+}
+.eform-popup-top .eform-reset-btn:hover {
+  color: var(--eform-color-primary-pressed);
+}
+
+/* ============================================================================
+   Container Card — 공용 카드 외곽
+   ============================================================================ */
+
+.eform-card {
+  background: var(--eform-bg-page);
+  border: 1px solid var(--eform-border-default); /* #E6E6EA */
+  border-radius: var(--eform-radius-lg);
+  box-shadow: var(--eform-shadow-2);
+}
+
+/* ============================================================================
+   KPI Card — 기한초과/임박, 미제출 등
+   Size: 386 × 96 / gap 20px 사이
+   ============================================================================ */
+
+.eform-kpi-card {
+  position: relative;
+  width: 386px;
+  height: 96px;
+  padding: 20px 24px;
+  background: var(--eform-bg-page);
+  border: 1px solid var(--eform-border-default);
+  border-radius: var(--eform-radius-lg);
+  box-shadow: var(--eform-shadow-2);
+  font-family: var(--eform-font-family-base);
+}
+
+.eform-kpi-card .eform-kpi-label {
+  font-size: var(--eform-body-small-size); /* 12px */
+  font-weight: var(--eform-font-weight-bold);
+  color: var(--eform-text-default); /* #737377 */
+}
+.eform-kpi-card .eform-kpi-number {
+  margin-top: 4px;
+  font-size: 32px;
+  font-weight: var(--eform-font-weight-bold);
+  line-height: 1;
+}
+.eform-kpi-card .eform-kpi-icon-box {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--eform-radius-sm);
+}
+.eform-kpi-card .eform-kpi-icon-box .eform-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* KPI Variants */
+.eform-kpi-danger .eform-kpi-number,
+.eform-kpi-danger .eform-kpi-icon-box .eform-icon {
+  color: var(--eform-color-danger);
+}
+.eform-kpi-danger .eform-kpi-icon-box {
+  background: var(--eform-color-danger-soft);
+}
+
+.eform-kpi-warning .eform-kpi-number,
+.eform-kpi-warning .eform-kpi-icon-box .eform-icon {
+  color: var(--eform-color-warning);
+}
+.eform-kpi-warning .eform-kpi-icon-box {
+  background: var(--eform-color-warning-soft);
+}
+
+/* ============================================================================
+   List Container — "제출 내역" / "요청 내역"
+   Size: 792 × 338 (예시)
+   Header: 52px / List Item: 72px
+   ============================================================================ */
+
+.eform-list-card {
+  background: var(--eform-bg-page);
+  border: 1px solid var(--eform-border-default);
+  border-radius: var(--eform-radius-lg);
+  box-shadow: var(--eform-shadow-2);
+  overflow: hidden;
+  font-family: var(--eform-font-family-base);
+}
+
+.eform-list-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 20px;
+  background: var(--eform-bg-soft); /* #F9F9FB */
+}
+.eform-list-header .eform-header-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--eform-text-strong); /* #48484A */
+}
+.eform-list-header .eform-header-title {
+  font-size: var(--eform-body-large-size); /* 14px */
+  font-weight: var(--eform-font-weight-bold);
+  color: var(--eform-text-strong);
+  flex: 1;
+}
+.eform-list-header .eform-header-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: var(--eform-body-xsmall-size); /* 11px */
+  line-height: 1;
+  color: var(--eform-text-default); /* #737377 */
+  cursor: pointer;
+}
+
+/* --- List Item --- */
+.eform-list-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 72px;
+  padding: 0 20px;
+  border-top: 1px solid var(--eform-border-divider-soft); /* #F3F3F7 */
+}
+
+.eform-list-item .eform-item-icon-box {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--eform-gray-0); /* #FFFFFF */
+  border-radius: var(--eform-radius-sm); /* 4px */
+  flex-shrink: 0;
+}
+.eform-list-item .eform-item-icon-box .eform-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* 색상 variants (아이콘 박스 내부 아이콘 색) */
+.eform-item-icon-primary .eform-icon {
+  color: var(--eform-color-primary);
+}
+.eform-item-icon-success .eform-icon {
+  color: var(--eform-color-success);
+}
+.eform-item-icon-warning .eform-icon {
+  color: var(--eform-color-warning);
+}
+.eform-item-icon-danger .eform-icon {
+  color: var(--eform-color-danger);
+}
+
+.eform-list-item .eform-item-body {
+  flex: 1;
+  min-width: 0;
+}
+.eform-list-item .eform-item-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--eform-body-large-size); /* 14px */
+  font-weight: var(--eform-font-weight-bold);
+  color: var(--eform-text-title); /* #303031 */
+}
+.eform-list-item .eform-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: var(--eform-body-small-size); /* 12px */
+  color: var(--eform-text-default);
+}
+.eform-list-item .eform-item-meta .eform-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--eform-text-disabled);
+}
+
+.eform-list-item .eform-item-action {
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   Badge — Status (60×23) & Tag (45×19)
+   Status: outline alpha 40%, bg transparent
+   Tag:    outline alpha 10%, bg transparent
+   ============================================================================ */
+
+.eform-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--eform-font-family-base);
+  font-weight: var(--eform-font-weight-regular);
+  line-height: 1;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--eform-radius-sm);
+}
+
+/* Status badge (60×23) */
+.eform-badge-status {
+  min-width: 60px;
+  height: 23px;
+  padding: 0 8px;
+  font-size: var(--eform-body-xsmall-size); /* 11px */
+}
+/* Chip_basic 색 규칙과 동일 정렬 (text = palette-50, border = same @ 40%) */
+.eform-badge-status.eform-badge-submitted {
+  color: var(--eform-primary-50); /* #5480C1 — chip-primary과 동일 */
+  border-color: rgba(84, 128, 193, 0.4);
+}
+.eform-badge-status.eform-badge-received {
+  color: var(--eform-gray-80); /* #606062 — chip-gray와 동일 */
+  border-color: rgba(96, 96, 98, 0.4);
+}
+
+/* Tag badge (45×19) — "선착순" 등 */
+.eform-badge-tag {
+  min-width: 45px;
+  height: 19px;
+  padding: 0 6px;
+  font-size: var(--eform-body-xsmall-size); /* 11px */
+}
+.eform-badge-tag.eform-tag-urgent {
+  color: var(--eform-red-50); /* #DC7272 — chip-danger와 동일 */
+  border-color: rgba(220, 114, 114, 0.4);
+}
+
+/* ============================================================================
+   Progress Bar — 요청 내역 진행률
+   Track 80×6 / Fill 가변 width
+   ============================================================================ */
+
+.eform-progress {
+  display: inline-flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--eform-font-family-base);
+}
+
+.eform-progress-track {
+  position: relative;
+  width: 80px;
+  height: 6px;
+  background: var(--eform-border-divider-soft); /* #F3F3F7 */
+  border-radius: var(--eform-radius-pill);
+  overflow: hidden;
+}
+.eform-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--eform-text-disabled); /* #AAAAAC */
+  border-radius: var(--eform-radius-pill);
+}
+.eform-progress-label {
+  font-size: var(--eform-body-small-size); /* 12px */
+  color: var(--eform-text-default); /* #737377 */
+}
+
+/* Complete (100%) — primary 색으로 완료 표시 */
+.eform-progress.is-complete .eform-progress-fill {
+  background: var(--eform-color-primary); /* #3D69AB */
+}
+.eform-progress.is-complete .eform-progress-label {
+  color: var(--eform-color-primary);
+}
+
+/* Progress 3단계 상태 (완료 단계별 색) — Red / Mustard / Primary
+   권장 임계: 0~33% = is-danger · 34~66% = is-warning · 67~99% = is-primary · 100% = is-complete
+   (임계값은 예시 — 프로젝트 상황에 맞춰 조정) */
+.eform-progress.is-danger .eform-progress-fill {
+  background: var(--eform-color-danger); /* #DC7272 — 낮은 진행률 */
+}
+.eform-progress.is-danger .eform-progress-label {
+  color: var(--eform-color-danger);
+}
+.eform-progress.is-warning .eform-progress-fill {
+  background: var(--eform-color-warning); /* #DFB736 — 중간 진행률 */
+}
+.eform-progress.is-warning .eform-progress-label {
+  color: var(--eform-color-warning);
+}
+.eform-progress.is-primary .eform-progress-fill {
+  background: var(--eform-color-primary); /* #3D69AB — 양호 진행률 */
+}
+.eform-progress.is-primary .eform-progress-label {
+  color: var(--eform-color-primary);
+}
+
+/* ============================================================================
+   Panel — 안내/경고 메시지 박스 (아이콘 + 제목 + 본문)
+   Variants: Primary / Gray / Teal / Mustard / Red
+   Layout: horizontal space-between (title 좌측, body 우측 정렬)
+   ============================================================================ */
+
+.eform-panel {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--eform-radius-sm);
+  background: transparent;
+}
+.eform-panel-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.eform-panel-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+.eform-panel-title {
+  font-size: var(--eform-body-small-size);
+  font-weight: var(--eform-font-weight-bold);
+  flex-shrink: 0;
+}
+.eform-panel-body {
+  font-size: var(--eform-body-xsmall-size);
+  line-height: 1.4;
+  text-align: right;
+}
+
+/* --- Variants: bg -5 / border -20 / text -70 (AA 준수) --- */
+.eform-panel-primary {
+  background: var(--eform-primary-5);
+  border-color: var(--eform-primary-20);
+  color: var(--eform-primary-70);
+}
+.eform-panel-gray {
+  background: var(--eform-gray-5);
+  border-color: var(--eform-gray-20);
+  color: var(--eform-gray-80);
+}
+.eform-panel-teal {
+  background: var(--eform-teal-5);
+  border-color: var(--eform-teal-20);
+  color: var(--eform-teal-70);
+}
+.eform-panel-mustard {
+  background: var(--eform-mustard-5);
+  border-color: var(--eform-mustard-20);
+  color: var(--eform-mustard-70);
+}
+.eform-panel-red {
+  background: var(--eform-red-5);
+  border-color: var(--eform-red-20);
+  color: var(--eform-red-70);
+}
+
+/* ============================================================================
+   Chip_basic — 단순 칩 (outline border-only, bg transparent)
+   Shape: Square / Round
+   Size: Large / Medium(★) / Small
+   Colors: Primary / Gray / Teal / Mustard / Red
+   Weight: Square = 400, Round = 700
+   ============================================================================ */
+
+.eform-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  font-family: var(--eform-font-family-base);
+  line-height: 1;
+  letter-spacing: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.eform-chip .eform-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* --- Shape --- */
+.eform-chip-square {
+  border-radius: var(--eform-radius-sm);
+  font-weight: var(--eform-font-weight-regular);
+}
+.eform-chip-round {
+  border-radius: var(--eform-radius-pill);
+  font-weight: var(--eform-font-weight-bold);
+}
+
+/* --- Size (Square) --- */
+.eform-chip-square.eform-chip-large {
+  height: 28px;
+  padding: 0 12px;
+  font-size: var(--eform-body-medium-size);
+} /* 13px */
+.eform-chip-square.eform-chip-medium {
+  height: 24px;
+  padding: 0 10px;
+  font-size: var(--eform-body-small-size);
+} /* 12px ★ */
+.eform-chip-square.eform-chip-small {
+  height: 19px;
+  padding: 0 6px;
+  font-size: var(--eform-body-xsmall-size);
+} /* 11px */
+
+/* --- Size (Round) --- */
+.eform-chip-round.eform-chip-large {
+  height: 30px;
+  padding: 0 14px;
+  font-size: var(--eform-body-medium-size);
+}
+.eform-chip-round.eform-chip-medium {
+  height: 26px;
+  padding: 0 12px;
+  font-size: var(--eform-body-small-size);
+} /* ★ */
+.eform-chip-round.eform-chip-small {
+  height: 23px;
+  padding: 0 10px;
+  font-size: var(--eform-body-xsmall-size);
+}
+
+/* --- Color variants (border outline alpha + text) --- */
+.eform-chip-primary {
+  color: var(--eform-primary-50); /* #5480C1 */
+  border-color: rgba(84, 128, 193, 0.4);
+}
+.eform-chip-gray {
+  color: var(--eform-gray-80); /* #606062 */
+  border-color: rgba(96, 96, 98, 0.4);
+}
+.eform-chip-teal {
+  color: var(--eform-teal-50); /* #5DB89B */
+  border-color: rgba(93, 184, 155, 0.4);
+}
+.eform-chip-mustard {
+  color: var(--eform-mustard-50); /* #DFB736 */
+  border-color: rgba(223, 183, 54, 0.4);
+}
+.eform-chip-danger {
+  color: var(--eform-red-50); /* #DC7272 */
+  border-color: rgba(220, 114, 114, 0.4);
+}
+
+/* ============================================================================
+   Chip_Deletable — 삭제 가능 칩 (X 아이콘 포함)
+   Shape: Round 전용 (Square 없음)
+   Size: Medium(25px) ★ 기본
+   Color: Gray 전용 (다른 색 미제공)
+   States: Default / Hover / Pressed / Activated / Disabled
+   X 아이콘 자체 hover 상태 분리 (chip hover와 별개)
+   ============================================================================ */
+
+.eform-chip-deletable {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 25px;
+  padding: 0 6px 0 10px;
+  background: var(--eform-gray-10); /* #F3F3F7 */
+  color: var(--eform-gray-90); /* #303031 */
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size); /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: var(--eform-radius-pill);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease,
+    color 100ms ease;
+}
+
+/* --- X 아이콘 (내부 button) --- */
+.eform-chip-deletable .eform-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--eform-gray-70); /* #737377 */
+  cursor: pointer;
+  transition: color 100ms ease;
+}
+.eform-chip-deletable .eform-close .eform-icon {
+  width: 8px;
+  height: 8px;
+  stroke-width: 1.3;
+}
+
+/* --- Chip 상태 --- */
+.eform-chip-deletable:hover:not(.is-activated):not(:disabled):not(
+    .is-disabled
+  ) {
+  background: var(--eform-gray-15); /* #EEEEF3 */
+}
+.eform-chip-deletable:active:not(.is-activated):not(:disabled):not(
+    .is-disabled
+  ) {
+  background: var(--eform-gray-15);
+  border-color: var(--eform-gray-40); /* #C2C2C5 */
+}
+.eform-chip-deletable.is-activated {
+  background: var(--eform-primary-10); /* #E2EAF7 */
+  border-color: var(--eform-primary-70); /* #2E548D */
+  color: var(--eform-primary-70);
+}
+.eform-chip-deletable:disabled,
+.eform-chip-deletable.is-disabled {
+  background: var(--eform-gray-30); /* #DADADE */
+  color: var(--eform-gray-50); /* #AAAAAC */
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+/* --- X 아이콘 자체 상태 (chip hover와 독립) --- */
+.eform-chip-deletable .eform-close:hover {
+  color: var(--eform-gray-85); /* #48484A */
+}
+.eform-chip-deletable:disabled .eform-close,
+.eform-chip-deletable.is-disabled .eform-close {
+  color: var(--eform-gray-50); /* #AAAAAC */
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   Check — 체크박스
+   Size: Medium(★) 14×14 (Large 없음)
+   States: Off / On / Indeterminate / Disabled / Disabled/On
+   ============================================================================ */
+
+.eform-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-small-size); /* 12px */
+  color: var(--eform-text-title); /* #303031 */
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.eform-check input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+  background: var(--eform-gray-0); /* white */
+  border: 1px solid var(--eform-gray-40); /* #C2C2C5 */
+  border-radius: var(--eform-radius-xs);
+  cursor: pointer;
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease;
+}
+
+/* On (checked) */
+.eform-check input[type="checkbox"]:checked {
+  background: var(--eform-primary-50); /* #5480C1 */
+  border-color: var(--eform-primary-60); /* #3D69AB */
+}
+.eform-check input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 4px;
+  height: 8px;
+  border-right: 1.5px solid var(--eform-gray-0); /* white */
+  border-bottom: 1.5px solid var(--eform-gray-0);
+  transform: rotate(45deg);
+}
+
+/* Indeterminate */
+.eform-check input[type="checkbox"]:indeterminate {
+  background: var(--eform-primary-50);
+  border-color: var(--eform-primary-60);
+}
+.eform-check input[type="checkbox"]:indeterminate::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 2px;
+  background: var(--eform-gray-0);
+  transform: translate(-50%, -50%);
+  border: none;
+}
+
+/* Disabled (Off) */
+.eform-check input[type="checkbox"]:disabled {
+  background: var(--eform-gray-30); /* #DADADE */
+  border-color: var(--eform-gray-40); /* #C2C2C5 */
+  cursor: not-allowed;
+}
+
+/* Disabled/On (checked + disabled) — 체크 마크 색만 회색화 */
+.eform-check input[type="checkbox"]:disabled:checked::after {
+  border-color: var(--eform-gray-50); /* #AAAAAC */
+}
+
+/* ============================================================================
+   Switch — 토글 스위치
+   Size: Medium(★) track 36×18, thumb 12×12 (Large 없음)
+   States: Off / On / Disabled / Disabled/On
+   — Disabled/On은 primary 색이 아닌 gray bg (의도된 디자인)
+   ============================================================================ */
+
+.eform-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-small-size); /* 12px */
+  color: var(--eform-text-title); /* #303031 */
+  cursor: pointer;
+  user-select: none;
+}
+
+.eform-switch input[type="checkbox"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.eform-switch .eform-track {
+  position: relative;
+  width: 36px;
+  height: 18px;
+  background: var(--eform-gray-0); /* white */
+  border: 1px solid var(--eform-gray-40); /* #C2C2C5 */
+  border-radius: var(--eform-radius-pill);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+  flex-shrink: 0;
+}
+
+.eform-switch .eform-track::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: var(--eform-gray-50); /* #AAAAAC */
+  border-radius: var(--eform-radius-pill);
+  transform: translateY(-50%);
+  transition:
+    left 150ms ease,
+    background-color 150ms ease;
+}
+
+/* On */
+.eform-switch input[type="checkbox"]:checked + .eform-track {
+  background: var(--eform-primary-50); /* #5480C1 */
+  border-color: var(--eform-primary-60); /* #3D69AB */
+}
+.eform-switch input[type="checkbox"]:checked + .eform-track::before {
+  left: calc(100% - 12px - 2px); /* 오른쪽 이동 */
+  background: var(--eform-gray-0); /* white */
+}
+
+/* Disabled (Off) */
+.eform-switch input[type="checkbox"]:disabled + .eform-track {
+  background: var(--eform-gray-30); /* #DADADE */
+  border-color: var(--eform-gray-40);
+  cursor: not-allowed;
+}
+
+/* Disabled/On — 오른쪽 위치는 유지하되 bg는 gray (의도된 디자인) */
+.eform-switch input[type="checkbox"]:disabled:checked + .eform-track {
+  background: var(--eform-gray-30); /* #DADADE */
+  border-color: var(--eform-gray-40);
+}
+.eform-switch input[type="checkbox"]:disabled:checked + .eform-track::before {
+  left: calc(100% - 12px - 2px);
+  background: var(--eform-gray-50); /* #AAAAAC */
+}
+
+/* ============================================================================
+   Radio — 단일 라디오 버튼
+   Size: Medium(★) 14×14 (Large 없음)
+   States: Off / On / Disabled / Disabled/On
+   — Check와 동일 색 체계, shape만 원형
+   ============================================================================ */
+
+.eform-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-small-size); /* 12px */
+  color: var(--eform-text-title); /* #303031 */
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.eform-radio input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+  background: var(--eform-gray-0); /* white */
+  border: 1px solid var(--eform-gray-40); /* #C2C2C5 */
+  border-radius: var(--eform-radius-pill);
+  cursor: pointer;
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease;
+}
+
+/* On (checked) */
+.eform-radio input[type="radio"]:checked {
+  background: var(--eform-primary-50); /* #5480C1 */
+  border-color: var(--eform-primary-60); /* #3D69AB */
+}
+.eform-radio input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--eform-gray-0); /* #FFFFFF */
+  border-radius: var(--eform-radius-circle);
+  transform: translate(-50%, -50%);
+}
+
+/* Disabled (Off) */
+.eform-radio input[type="radio"]:disabled {
+  background: var(--eform-gray-30); /* #DADADE */
+  border-color: var(--eform-gray-40); /* #C2C2C5 */
+  cursor: not-allowed;
+}
+
+/* Disabled/On — 가운데 dot 색만 회색화 */
+.eform-radio input[type="radio"]:disabled:checked {
+  background: var(--eform-gray-30); /* #DADADE */
+  border-color: var(--eform-gray-40); /* #C2C2C5 */
+}
+.eform-radio input[type="radio"]:disabled:checked::after {
+  background: var(--eform-gray-50); /* #AAAAAC */
+}
+
+/* ============================================================================
+   Radio Group — 세그먼트 컨트롤 (pill 형태, 독립 버튼)
+   Size: Large 32px / Medium 28px
+   Variants: text-only / icon+text
+   States: Default / Hover / Pressed / Activated / Disabled
+   — 각 버튼은 독립 pill, 그룹 내 4px gap
+   ============================================================================ */
+
+.eform-radio-group {
+  display: inline-flex;
+  gap: 4px;
+  font-family: var(--eform-font-family-base);
+}
+
+.eform-radio-group-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  height: 28px; /* Medium 기본 */
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size); /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  line-height: 1;
+  background: var(--eform-gray-5); /* #F9F9FB */
+  border: 1px solid var(--eform-gray-30); /* #DADADE */
+  border-radius: var(--eform-radius-pill);
+  color: var(--eform-text-default);       /* #737377 */
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease,
+    color 100ms ease;
+}
+
+/* Size */
+.eform-radio-group-large  { height: 32px; }
+.eform-radio-group-medium { height: 28px; }
+
+/* Icon inside segment item */
+.eform-radio-group-item .eform-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* Hover */
+.eform-radio-group-item:hover:not(:disabled):not(.is-activated):not(.is-disabled) {
+  background: var(--eform-gray-10);    /* #F3F3F7 */
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-strong);     /* #48484A */
+}
+
+/* Pressed (active) */
+.eform-radio-group-item:active:not(:disabled):not(.is-activated):not(.is-disabled),
+.eform-radio-group-item.is-pressed {
+  background: var(--eform-gray-10);    /* #F3F3F7 */
+  border-color: var(--eform-gray-40);  /* #C2C2C5 — 원본 #BEC0C6 근사값 (팔레트 내) */
+  color: var(--eform-text-strong);     /* #48484A */
+}
+
+/* Activated (선택됨) */
+.eform-radio-group-item.is-activated {
+  background: var(--eform-gray-0);            /* white */
+  border-color: var(--eform-color-primary);   /* #3D69AB */
+  color: var(--eform-color-primary);          /* #3D69AB */
+}
+.eform-radio-group-item.is-activated:hover {
+  background: var(--eform-gray-0);
+  border-color: var(--eform-color-primary);
+  color: var(--eform-color-primary);
+}
+
+/* Disabled */
+.eform-radio-group-item:disabled,
+.eform-radio-group-item.is-disabled {
+  background: var(--eform-gray-30);   /* #DADADE */
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-disabled);  /* #AAAAAC */
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   Text Form (Input) — 텍스트 입력
+   Size: Large 36 / Medium(★) 32
+   States: Default / Hover / Focus / Disabled / Readonly(View)
+   — View 상태는 native [readonly] 속성으로 표현 (의미론적 명확성)
+   ============================================================================ */
+
+.eform-input {
+  box-sizing: border-box;
+  height: 32px; /* Medium (기본) */
+  padding: 0 10px;
+  background: var(--eform-gray-0);              /* white */
+  border: 1px solid var(--eform-gray-30);       /* #DADADE */
+  border-radius: var(--eform-radius-sm);
+  color: var(--eform-text-title); /* #303031 */
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size); /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  outline: none;
+  transition: border-color 100ms ease, background-color 100ms ease;
+}
+
+.eform-input::placeholder {
+  color: var(--eform-text-disabled);            /* #AAAAAC */
+}
+
+/* Size */
+.eform-input-large  { height: 36px; }
+.eform-input-medium { height: 32px; }
+
+/* Hover — :focus 중에는 미적용 (focus 스타일 유지) */
+.eform-input:hover:not(:focus):not(:disabled):not([readonly]) {
+  border-color: var(--eform-gray-40);           /* #C2C2C5 */
+}
+
+/* Focus */
+.eform-input:focus:not([readonly]) {
+  border-color: var(--eform-primary-50);        /* #5480C1 */
+}
+
+/* Disabled */
+.eform-input:disabled {
+  background: var(--eform-gray-20);             /* #E6E6EA */
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-disabled);            /* #AAAAAC */
+  cursor: not-allowed;
+}
+
+/* View (readonly) — 편집 불가, 값 표시 전용 */
+.eform-input[readonly] {
+  background: var(--eform-gray-20);             /* #E6E6EA */
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-default);             /* #737377 */
+  cursor: default;
+}
+
+/* ============================================================================
+   Textarea — 멀티라인 입력 (Input과 동일 스타일 + 세로 가변)
+   min-height: 약 3줄 (13px × line-height 1.5 × 3 + padding 16px + border 2px ≈ 76.5px)
+   States: Default / Hover / Focus / Disabled / Readonly(View)
+   ============================================================================ */
+
+.eform-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 80px;                             /* ≈ 3줄 */
+  padding: 8px 10px;
+  background: var(--eform-gray-0);              /* white */
+  border: 1px solid var(--eform-gray-30);       /* #DADADE */
+  border-radius: var(--eform-radius-sm);
+  color: var(--eform-text-title);               /* #303031 */
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size);     /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  line-height: var(--eform-line-height-base);   /* 1.5 */
+  resize: vertical;
+  outline: none;
+  transition: border-color 100ms ease, background-color 100ms ease;
+}
+
+.eform-textarea::placeholder {
+  color: var(--eform-text-disabled);            /* #AAAAAC */
+}
+
+/* Hover — :focus 중에는 미적용 (focus 스타일 유지) */
+.eform-textarea:hover:not(:focus):not(:disabled):not([readonly]) {
+  border-color: var(--eform-gray-40);           /* #C2C2C5 */
+}
+
+/* Focus */
+.eform-textarea:focus:not([readonly]) {
+  border-color: var(--eform-primary-50);        /* #5480C1 */
+}
+
+/* Disabled */
+.eform-textarea:disabled,
+.eform-textarea.is-disabled {
+  background: var(--eform-gray-20);             /* #E6E6EA */
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-disabled);            /* #AAAAAC */
+  cursor: not-allowed;
+  resize: none;
+}
+
+/* View (readonly) */
+.eform-textarea[readonly],
+.eform-textarea.is-view {
+  background: var(--eform-gray-20);             /* #E6E6EA */
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-default);             /* #737377 */
+  cursor: default;
+  resize: none;
+}
+
+/* ============================================================================
+   Combobox (Select) — 드롭다운 선택
+   Size: Large 36 / Medium(★) 32
+   States: Default / Hover / Focus / Disabled / Readonly(View)
+   — native <select> 스타일링, chevron은 background-image
+   ============================================================================ */
+
+.eform-select {
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0 32px 0 10px; /* 오른쪽 여백은 chevron 공간 */
+  background-color: var(--eform-gray-0);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%23737377' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'><polyline points='3,5 7,9 11,5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px 14px;
+  border: 1px solid var(--eform-gray-30);
+  border-radius: var(--eform-radius-sm);
+  color: var(--eform-text-title); /* #303031 */
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size); /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 100ms ease, background-color 100ms ease;
+}
+
+/* Size */
+.eform-select-large  { height: 36px; }
+.eform-select-medium { height: 32px; }
+
+/* Hover — :focus 중에는 미적용 (focus 스타일 유지) */
+.eform-select:hover:not(:focus):not(:disabled):not([readonly]) {
+  border-color: var(--eform-gray-40);
+}
+
+/* Focus */
+.eform-select:focus:not([readonly]) {
+  border-color: var(--eform-primary-50);
+}
+
+/* Disabled */
+.eform-select:disabled {
+  background-color: var(--eform-gray-20);
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-disabled);
+  cursor: not-allowed;
+}
+
+/* View (readonly) — native <select>는 readonly 미지원이므로 .is-view 클래스 병행 */
+.eform-select[readonly],
+.eform-select.is-view {
+  background-color: var(--eform-gray-20);
+  border-color: var(--eform-gray-30);
+  color: var(--eform-text-default);
+  pointer-events: none;    /* 드롭다운 열림 방지 */
+  cursor: default;
+}
+
+/* ============================================================================
+   Search — 검색 입력
+   Size: Large 36 / Medium(★) 32
+   Structure: wrapper > search-icon + input + clear-icon (값 있을 때만)
+   States: Default / Hover / Focus / Disabled / Readonly(View)
+   ============================================================================ */
+
+.eform-search {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 32px; /* Medium 기본 */
+  padding: 0 8px;
+  gap: 8px;
+  background: var(--eform-gray-0); /* #FFFFFF */
+  border: 1px solid var(--eform-gray-30); /* #DADADE */
+  border-radius: var(--eform-radius-sm);
+  color: var(--eform-text-title); /* #303031 */
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size); /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  line-height: 1;
+  letter-spacing: 0;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+/* Size */
+.eform-search-large  { height: 36px; }
+.eform-search-medium { height: 32px; }
+
+/* 왼쪽 돋보기 아이콘 */
+.eform-search .eform-search-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--eform-text-default); /* #737377 */
+  pointer-events: none;
+}
+
+/* 입력 영역 */
+.eform-search > input[type="text"],
+.eform-search > input[type="search"] {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--eform-font-family-base);
+  font-size: var(--eform-body-medium-size); /* 13px */
+  font-weight: var(--eform-font-weight-regular);
+  color: var(--eform-text-title);
+}
+
+.eform-search > input::placeholder {
+  color: var(--eform-text-disabled);
+}
+
+/* 오른쪽 clear 아이콘 — 값 있을 때만 표시 (:placeholder-shown 반전) */
+.eform-search .eform-search-clear {
+  display: none;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: var(--eform-radius-circle);
+  background: var(--eform-gray-20); /* #E6E6EA */
+  color: var(--eform-gray-70); /* #737377 — 내부 x 아이콘 */
+  cursor: pointer;
+  transition: background 200ms ease-out;
+}
+
+.eform-search .eform-search-clear:hover {
+  background: var(--eform-gray-30);
+}
+
+.eform-search > input:not(:placeholder-shown) ~ .eform-search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eform-search > input:not(:placeholder-shown) ~ .eform-search-clear svg {
+  width: 8px;
+}
+
+/* Hover */
+.eform-search:hover:not(.is-disabled):not(.is-view):not(:focus-within) {
+  border-color: var(--eform-gray-40);
+}
+
+/* Focus */
+.eform-search:focus-within:not(.is-disabled):not(.is-view) {
+  border-color: var(--eform-primary-50);
+}
+
+/* Disabled — 내부 input disabled 속성 + wrapper에 .is-disabled 병행 */
+.eform-search.is-disabled,
+.eform-search:has(> input:disabled) {
+  background: var(--eform-gray-20);
+  border-color: var(--eform-gray-30);
+  cursor: not-allowed;
+}
+.eform-search.is-disabled > input,
+.eform-search > input:disabled {
+  color: var(--eform-text-disabled);
+  cursor: not-allowed;
+}
+
+/* View (readonly) */
+.eform-search.is-view,
+.eform-search:has(> input[readonly]) {
+  background: var(--eform-gray-20);
+  border-color: var(--eform-gray-30);
+}
+.eform-search.is-view > input,
+.eform-search > input[readonly] {
+  color: var(--eform-text-default); /* #737377 */
+  cursor: default;
+}
