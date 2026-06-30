@@ -34,3 +34,4 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.inclusions=**/*.html,**/pdf.js,**/pdf.worker.js,**/pdf_viewer.css
             -Dsonar.javascript.maxFileSize=20
+            -Dsonar.javascript.analyzeGeneratedCode=true
