@@ -32,6 +32,6 @@ jobs:
             -Dsonar.organization=whwocom
             -Dsonar.projectKey=whwocom_test
             -Dsonar.sources=.
-            -Dsonar.inclusions=**/*.html,**/*.js,**/*.css
+            -Dsonar.inclusions=**/*.html,**/*.js,**/*.css,**/*.jsp
             -Dsonar.javascript.maxFileSize=20
             -Dsonar.javascript.analyzeGeneratedCode=true
