@@ -30,6 +30,13 @@ jobs:
         with:
           fetch-depth: 0 # 전체 히스토리를 가져와야 일조권/코드 추적이 정확해집니다.
 
+      # ★ 2. 자바 17 환경 구축 (이 단계가 추가되어야 합니다)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin' # 가장 안정적인 오픈 JDK 배포판인 Temurin을 사용합니다.          
+
       - name: Analyze with SonarQube
         uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
         env:
