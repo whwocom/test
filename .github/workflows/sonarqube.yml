@@ -21,15 +21,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. 공식 SonarCloud 전용 액션 구동 (Java 버전 에러가 나지 않는 최신 플러그인)
+      # 2. 공식 SonarCloud 전용 액션 구동
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          # 여기에 기존 옵션들을 -D 문법으로 주입합니다.
           args: >
+            -Dsonar.organization=whwocom
             -Dsonar.projectKey=whwocom_test
             -Dsonar.sources=.
             -Dsonar.inclusions=**/*.html,**/pdf.js,**/pdf.worker.js,**/pdf_viewer.css
